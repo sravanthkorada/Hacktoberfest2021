@@ -1,0 +1,44 @@
+//over loading functions are the functions with same name, but with different parameters or different no. of parameters
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class human{
+private:
+    int age;
+    string name;
+public:
+    human(){
+        age=0;
+        name="noname";
+        cout << "default constructor" << endl;
+    }
+    human(int myage){
+        age=myage;
+        name="noname";
+        cout << "default constructor" << endl;
+    }
+    human(string myname){
+        age=0;
+        name=myname;
+        cout << "default constructor" << endl;
+    }
+    void display(){
+        cout << name << " " << age << endl;
+    }
+};
+
+int main(){
+    human sravanth;
+    sravanth.display();
+
+    human anil(24);
+    anil.display();
+
+    human lasya("lasya");
+    lasya.display();
+
+    return 0;
+}
+
