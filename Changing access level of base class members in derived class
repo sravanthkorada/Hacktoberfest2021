@@ -1,0 +1,32 @@
+//using access declaration we can change the access level (scope) of members of the base class in the derived class
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class human{
+protected:
+    int age;
+public:
+    void setage(int myage){
+        age = myage;
+    }
+};
+
+class alien: private human{
+public:
+    human::age;
+    human::setage;
+    void display(){
+        cout << age << endl;
+    }
+};
+
+int main(){
+    alien sravanth;
+    sravanth.age=21;
+    sravanth.display();
+    sravanth.setage(22);
+    sravanth.display();
+    return 0;
+}
