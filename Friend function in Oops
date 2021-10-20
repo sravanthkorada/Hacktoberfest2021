@@ -1,0 +1,27 @@
+//a friend fun is a fun specified outside a class but has the ability to access the private and protected members of that class
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class human{
+private:
+    int age;
+    string name;
+public:
+    human(int myage, string myname){
+        age=myage;
+        name=myname;
+    }
+    friend void display(human man);
+};
+
+void display(human man){
+    cout << man.age << " " << man.name << endl;
+}
+
+int main(){
+    human sravanth(21, "sravanth korada");
+    display(sravanth);
+    return 0;
+}
