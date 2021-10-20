@@ -1,0 +1,82 @@
+/*
+
+You are given an infix expression S of length N. You need to convert the given expression S to its postfix equivalent using stack.
+
+Input:
+The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows: 
+The first line of each test case contains a single integer N denoting the length of  S. 
+The second line contains a string S, the infix expression.
+
+Output:
+For each test case print a single line containing the postfix equivalent for the given infix expression. 
+
+*/
+
+
+#include <bits/stdc++.h>
+
+#define int long long
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define endl "\n"
+
+using namespace std;
+
+int prec(char ch){
+    if(ch=='^')
+        return 4;
+    else if(ch=='/')
+        return 3;
+    else if(ch=='*')
+        return 2;
+    else if(ch=='+' or ch=='-')
+        return 1;
+    else
+        return -1;
+}
+
+void infix_to_prefix(string s){
+    stack<char>st;
+    string result = "";
+    for(int i=0; i<s.size(); i++){
+        if(s[i]>='A' and s[i]<='Z'){
+            result+=s[i];
+        }
+        else if(s[i]=='('){
+            st.push('(');
+        }
+        else if(s[i]==')'){
+            while(st.top()!='('){
+                result+=st.top();
+                st.pop();
+            }
+            st.pop();
+        }
+        else{
+            while(!st.empty() and prec(s[i])<=prec(st.top())){
+                result+=st.top();
+                st.pop();
+            }
+            st.push(s[i]);
+        }
+    }
+    while(!st.empty()){
+        result+=st.top();
+        st.pop();
+    }
+    cout << result << endl;
+}
+
+signed main(){
+    IOS
+    int T;
+    cin >> T;
+    while(T--){
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        infix_to_prefix(s);
+    }
+    return 0;
+}
+
